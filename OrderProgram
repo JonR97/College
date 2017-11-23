@@ -1,0 +1,152 @@
+import java.util.*;
+
+class Main {
+  public static void main(String[] args) {
+  	Order myOrder = new Order();
+  	myOrder.menu();
+  }
+}
+
+class Order {
+	
+	Scanner input = new Scanner(System.in);
+	ArrayList<String> foodItems = new ArrayList<String>();
+	boolean isVoucher = false;
+	String address;
+	String postcode;
+	
+	public void menu(){
+		System.out.println("-Menu-\n1. Order\n2. Check order\n3. Delivery\n4. Apply discount voucher\n5. Checkout\n6. Quit");
+		int menuChoice = input.nextInt();
+		switch (menuChoice){
+			case 1: orderMenu(); break;
+			case 2: checkOrder(); break;
+			case 3: delivery(); break;
+			case 4: voucher(); break;
+			case 5: checkout(); break;
+			case 6: quit(); break;
+		}
+	}
+	
+	public void orderMenu(){
+		System.out.println("-Order Menu-\n1. Add items\n2. Remove items");
+		String orderChoice = input.next();
+		while(true){
+			if(orderChoice.contains("1")){
+				orderMenuAdd();
+				break;
+			}else if(orderChoice.contains("2")){
+				orderMenuRemove();
+				break;
+			}else{
+				System.out.println("Please enter a valid option.");
+			}
+		}
+	}
+	
+	public void orderMenuAdd(){
+		System.out.println("Please enter what you would like to add to your order.");
+		while(true){
+			foodItems.add(input.next());
+			System.out.println("1. Add another item\n2. Menu");
+			String addChoice = input.next();
+			while(true){
+				if(addChoice.contains("1")){
+					break;
+				}else if(addChoice.contains("2")){
+					menu();
+					break;
+				}else{
+					System.out.println("Please enter a valid option.");
+				}
+			}
+		}
+	}
+	
+	public void orderMenuRemove(){
+		System.out.println("Please enter what you would like to remove from your order.");
+		while(true){
+			foodItems.remove(input.next());
+			System.out.println("1. Remove another item\n2. Menu");
+			String removeChoice = input.next();
+			while(true){
+				if(removeChoice.contains("1")){
+					break;
+				}else if(removeChoice.contains("2")){
+					menu();
+					break;
+				}else{
+					System.out.println("Please enter a valid option");
+				}
+			}
+		}
+	}
+	
+	public void checkOrder(){
+		System.out.println(foodItems);
+		menu();
+	}
+	
+	public void delivery(){
+		System.out.println("Please enter your address.");
+		input.nextLine();
+		address = input.nextLine();
+		System.out.println("");
+		System.out.println("Please enter your postcode.");
+		postcode = input.nextLine();
+		System.out.println("Address: " + address);
+		System.out.println("Postcode: " + postcode);
+		menu();
+	}
+	
+	public void voucher(){
+		if(isVoucher == true){
+			System.out.println("You have already applied a voucher");
+			menu();
+		}
+		System.out.print("Please enter a voucher: ");
+		String inputVoucher = input.next();
+		inputVoucher = inputVoucher.toLowerCase();
+		while(true){
+			if(inputVoucher.contains("student2016")){
+				System.out.println("Your voucher has been applied.");
+				isVoucher = true;
+				menu();
+				break;
+			}else if(inputVoucher.contains("computerscience")){
+				System.out.println("Your voucher has been applied.");
+				isVoucher = true;
+				menu();
+				break;
+			}else{
+				System.out.println("Your voucher is invalid");
+				menu();
+			}
+		}
+	}
+	
+	public void checkout(){
+		System.out.println("Your current order: " + foodItems);
+		System.out.println("Your current address is " + address + ", " + postcode);
+		System.out.println("1. Change order\n2. Change address\n3. Complete order");
+		String checkoutChoice = input.next();
+		while(true){
+			if(checkoutChoice.contains("1")){
+				orderMenu();
+				break;
+			}else if(checkoutChoice.contains("2")){
+				delivery();
+				break;
+			}else if(checkoutChoice.contains("3")){
+				System.out.println("Your order has been submitted.");
+				break;
+			}else{
+				System.out.println("Please enter a valid option.");
+			}
+		}
+	}
+	
+	public void quit(){
+		
+	}
+}
