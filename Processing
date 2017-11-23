@@ -1,0 +1,43 @@
+//processing language
+float x, y;
+float angle1 = 0.0;
+float angle2 = 0.0;
+float segLength = 100;
+
+void setup(){
+    size(640, 360);
+    strokeWeight(30);
+    stroke(0, 200);
+    
+    x = width * 0.3;
+    y = height * 0.5;   
+}
+
+void draw(){
+    background(255);
+    
+    angle1 = (mouseX/float(width) - 0.5) * -PI;
+    angle2 = (mouseY/float(height) - 0.5) * PI;
+    
+    pushMatrix();
+    segment(380, height/2, angle1);
+    segment(segLength, 0, angle2);
+    popMatrix();
+    
+    pushMatrix();
+    segment(300, height/2, angle1);
+    segment(segLength, 0, angle2);
+    popMatrix();    
+    
+    fill(0, 200);
+    rect(width/2, height/2, 50, 100); 
+    
+    fill(0, 200);
+    ellipse(340, 120, 60, 60);
+}
+
+void segment(float x, float y, float a){
+    translate(x, y);
+    rotate(a);
+    line(0, 0, segLength, 0);
+}
