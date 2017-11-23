@@ -1,0 +1,55 @@
+
+package refactorme2task;
+import java.util.Scanner;
+
+public class RefactorMe2Task {
+   
+    
+    public static void main(String[] args) {
+            numberLine();
+            nameAge();
+            areaTriangle(10, 5);
+            poundToDollar(1.27);
+    }
+    
+    public static void nameAge() {
+        //This code needs to detect an input name and age and print it
+        System.out.print("What is your name? ");
+        System.out.print("What is your age? ");
+        System.out.println("My name is " + ? + ", I am " + ? + " years old.");
+        
+    }
+    
+    public static void areaTriangle(int height, int width) {
+        //This code needs to calculate the area of the given triangle and print it
+        //area of triangle = height * width / 2
+    }
+    
+    public static void poundToDollar(??? dollarRate) {
+        //This code needs to detect an input of pound and convert it to dollars
+        //conversion = pound * dollarRate
+    }
+    
+    public static void numberLine() {
+        //This code needs to find 2 adjacent numbers that gives you the highest product 
+        //both left to right and right to left
+        //The result should be 56
+            int grid [][] = {
+                {9, 2, 3, 2, 3, 5, 6, 3, 7, 8}
+
+            };    
+            
+            int product = 0;
+            int highest = 0;
+            
+            for(int x = 0; x<7; x++){
+            for(int y = 0; y<1; y++){
+                product = grid[y][x] * grid[y][x + 1];
+                highest = product;
+            }
+            }
+            //start code here
+            System.out.println(highest);
+    }
+    
+}
