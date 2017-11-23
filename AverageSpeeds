@@ -1,0 +1,66 @@
+package averagespeeds;
+// @author JRoberts
+import java.util.*;
+import java.util.regex.*;
+public class AverageSpeeds {
+
+    public static void main(String[] args) {
+        SpeedChecks mySpeed = new SpeedChecks();
+        mySpeed.vehicleSpeed();
+        mySpeed.registration();
+        mySpeed.info();
+        mySpeed.file();
+    }
+    
+}
+
+class SpeedChecks{
+    int speed;
+    String reg;
+    String name;
+    String address;
+    Scanner input = new Scanner(System.in);
+    String pattern = "[a-z,A-Z]{2}+[0-9]{2}+[a-z,A-Z]{3}";
+    boolean loop = true;
+    
+    public void vehicleSpeed(){
+        System.out.print("Please enter the distance: ");
+        int distance = input.nextInt();
+        System.out.print("Please enter the time taken: ");
+        int time = input.nextInt();
+        input.nextLine();
+        speed = distance/time;
+        System.out.println(speed);
+    }
+    
+    public void registration(){
+        while(loop == true){
+        System.out.print("Please enter the registation number: ");
+        reg = input.nextLine();
+        reg = reg.replaceAll(" ","");
+        Pattern r = Pattern.compile(pattern);
+        Matcher m = r.matcher(reg);
+        if(m.find()){
+            System.out.println("Thank you for entering the registration.");
+             loop = false;
+        }else{
+            System.out.println("The registration you entered is invalid.");
+        }
+      }
+    }
+    
+    public void info(){
+        System.out.println("Person lookup.");
+        System.out.print("Please enter the persons name: ");
+        name = input.nextLine();
+        System.out.print("Please enter the persons address: ");
+        address = input.nextLine();
+    }
+    
+    public void file(){
+        System.out.println("Name: " + name);
+        System.out.println("Address: " + address);
+        System.out.println("Average Speed: " + speed);
+        System.out.println("Registration: " + reg);
+    }
+}
